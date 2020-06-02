@@ -1,86 +1,38 @@
-const resultEl = document.getElementById('result');
-const lengthEl = document.getElementById('length');
-const uppercaseEl = document.getElementById('uppercase');
-const lowercaseEl = document.getElementById('lowercase');
-const numbersEl = document.getElementById('numbers');
-const symbolsEl = document.getElementById('symbols');
-const generateEl = document.getElementById('generate');
-const clipboard = document.getElementById('clipboard');
 
-const randomFunc = {
-	lower: getRandomLower,
-	upper: getRandomUpper,
-	number: getRandomNumber,
-	symbol: getRandomSymbol
+//Varibles for charater types to be inclued in the Password
+let char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let num = "123456789";
+let sym = "!@#%^&*()?";
+
+// Assignment Code
+let generateBtn = document.querySelector('#generate');
+
+generateBtn.addEventListener('click', function(){
+let charNum = prompt("How many Characters would you like your password to be? Please select between 8 and 128!");
+let charBox = confirm ("Would you like to inclued Characters?")
+let numBox = confirm("Would you like to inclued numbers?");
+let symBox = confirm("Would you like to inclued symbols?")
+
+// Write password to the #password input
+let characters = '';
+let length = Number (charNum);
+
+if(charBox){
+	characters += char;
 }
-
-clipboard.addEventListener('click', () => {
-	const textarea = document.createElement('textarea');
-	const password = resultEl.innerText;
-	
-	if(!password) { return; }
-	
-	textarea.value = password;
-	document.body.appendChild(textarea);
-	textarea.select();
-	document.execCommand('copy');
-	textarea.remove();
-	alert('Password copied to clipboard');
-});
-
-generate.addEventListener('click', () => {
-	const length = +lengthEl.value;
-	const hasLower = lowercaseEl.checked;
-	const hasUpper = uppercaseEl.checked;
-	const hasNumber = numbersEl.checked;
-	const hasSymbol = symbolsEl.checked;
-	
-	resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
-});
-
-function generatePassword(lower, upper, number, symbol, length) {
-	let generatedPassword = '';
-	const typesCount = lower + upper + number + symbol;
-	const typesArr = [{lower}, {upper}, {number}, {symbol}].filter(item => Object.values(item)[0]);
-	
-	// Doesn't have a selected type
-	if(typesCount === 0) {
-		return '';
-	}
-	
-	// create a loop
-	for(let i=0; i<length; i+=typesCount) {
-		typesArr.forEach(type => {
-			const funcName = Object.keys(type)[0];
-			generatedPassword += randomFunc[funcName]();
-		});
-	}
-	
-	const finalPassword = generatedPassword.slice(0, length);
-	
-	return finalPassword;
+if (symBox){
+	characters += sym;
 }
+if (numBox){
+	characters += num;
+} 
+let password = '';
 
-function getRandomLower() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
+for (let i = 0; i < length; i++)
+  password += characters.charAt(Math.floor(Math.random() * characters.length));
 
-function getRandomUpper() {
-	return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
+  //generatePassword();
+let passwordText = document.querySelector('#password');
 
-function getRandomNumber() {
-	return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-
-function getRandomSymbol() {
-	const symbols = '!@#$%^&*(){}[]=<>/,.'
-	return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-
-
-
-
-
-
+passwordText.value = password;
+})
