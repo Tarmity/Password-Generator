@@ -4,7 +4,7 @@ let char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let num = "123456789";
 let sym = "!@#%^&*()?";
 
-// Assignment Code
+//when the Generate Password button is push confirm and prompt questions
 let generateBtn = document.querySelector('#generate');
 
 generateBtn.addEventListener('click', function(){	
@@ -17,8 +17,7 @@ let charNum = (function ask() {
 	return isNaN(n) || +n > 128 || +n < 8 ? ask() : n;
   }());
   
-
-// Write password to the #password input
+//generatePassword();
 let characters = '';
 let length = Number (charNum);
 
@@ -33,10 +32,11 @@ if (numBox){
 } 
 let password = '';
 
+//loop to generate random password using the selected critrea
 for (let i = 0; i < length; i++)
   password += characters.charAt(Math.floor(Math.random() * characters.length));
 
-  //generatePassword();
+// Write password to the #password input
 let passwordText = document.querySelector('#password');
 
 passwordText.value = password;
