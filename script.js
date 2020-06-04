@@ -7,11 +7,16 @@ let sym = "!@#%^&*()?";
 // Assignment Code
 let generateBtn = document.querySelector('#generate');
 
-generateBtn.addEventListener('click', function(){
-let charNum = prompt("How many Characters would you like your password to be? Please select between 8 and 128!");
-let charBox = confirm ("Would you like to inclued Characters?")
+generateBtn.addEventListener('click', function(){	
+let charBox = confirm ("Would you like to inclued Characters?");
 let numBox = confirm("Would you like to inclued numbers?");
-let symBox = confirm("Would you like to inclued symbols?")
+let symBox = confirm("Would you like to inclued symbols?");
+let charNum = (function ask() {
+	var n = prompt("How many Characters would you like your password to be? Please select between 8 and 128!");
+	
+	return isNaN(n) || +n > 128 || +n < 8 ? ask() : n;
+  }());
+  
 
 // Write password to the #password input
 let characters = '';
