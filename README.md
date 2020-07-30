@@ -1,4 +1,5 @@
 # Password-Generator
+![License](https://img.shields.io/github/license/tarmity/Password-Generator)
 
 ## Description 
 
