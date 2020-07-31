@@ -12,6 +12,7 @@ This repository is where i developed the Password Generator product. Not only do
 * [Installation](#installation)
 * [Usage](#usage)
 * [Credits](#credits)
+* [License](#License)
 
 
 ## Installation
@@ -27,4 +28,5 @@ To operate the Password Generator simply open the link and push the "Generate Pa
 
 Followed brief instructions to achieve the desired outcome.
 
-
+ ## License
+  * MIT
